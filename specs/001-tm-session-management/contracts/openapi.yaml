@@ -120,28 +120,49 @@ components:
     schemas:
         GameSession:
             type: object
+            required: [session_id, owner_id, status, state_version]
             properties:
                 session_id:
                     type: string
+                    format: uuid
                 owner_id:
                     type: string
+                    format: uuid
                 status:
                     type: string
+                    enum: [pending, in_progress, finished]
                 current_generation:
                     type: integer
+                    minimum: 0
                 state_version:
                     type: integer
+                    minimum: 0
                 global_metrics:
                     type: object
+                    properties:
+                        oxygen:
+                            type: number
+                        temperature:
+                            type: number
+                        oceans:
+                            type: integer
+                            minimum: 0
         Player:
             type: object
+            required: [player_id, display_name]
             properties:
                 player_id:
                     type: string
+                    format: uuid
                 display_name:
                     type: string
+                    minLength: 1
+                    maxLength: 32
                 resources:
                     type: object
+                    additionalProperties:
+                        type: integer
+                        minimum: 0
 # WebSocket events (documented here for consumers):
 # - client -> server: join (sessionId, display_name)
 # - client -> server: update_resources (base_version, delta)
