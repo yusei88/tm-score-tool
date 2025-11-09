@@ -72,8 +72,8 @@ npm run dev
 
 これにより、以下が起動します:
 
-- サーバー: http://localhost:3001
-- クライアント: http://localhost:3000
+- サーバー: <http://localhost:3001>
+- クライアント: <http://localhost:3000>
 
 ### 個別実行
 

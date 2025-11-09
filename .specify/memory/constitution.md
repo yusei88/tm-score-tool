@@ -1,6 +1,7 @@
 <!--
 Sync Impact Report
 
+- Japanese Language Requirement
 - Version change: unknown -> 1.0.0
 - Modified/Added principles:
 	- Added: I. Modular, library-first components
@@ -66,9 +67,9 @@ functionality, PATCH for bugfixes and clarifications.
 This constitution constrains core technology choices for consistency across the
 project. The agreed stack (documented in README.md and docs/) is:
 
--   Server: Node.js (v18+), Express.js, Socket.io
--   Persistence: SQLite3 (or JSON snapshotting for ephemeral use)
--   Client: Vue.js 3 (Composition API), Vite, Pinia
+- Server: Node.js (v18+), Express.js, Socket.io
+- Persistence: SQLite3 (or JSON snapshotting for ephemeral use)
+- Client: Vue.js 3 (Composition API), Vite, Pinia
 
 Project layout MUST follow the repository structure documented in README.md;
 server and client code are separated (see src/server, src/client). Any deviation
@@ -77,15 +78,15 @@ approved via the amendment process.
 
 ## Development Workflow & Quality Gates
 
--   All code changes MUST be delivered via Pull Request with at least one approving
+- All code changes MUST be delivered via Pull Request with at least one approving
     reviewer.
--   CI MUST run unit, integration/contract, and lint checks. PRs that add or
+- CI MUST run unit, integration/contract, and lint checks. PRs that add or
     change runtime contracts MUST include or update contract tests and integration
     tests.
--   TDD rule: tests for new functionality MUST exist in the repo and fail before
+- TDD rule: tests for new functionality MUST exist in the repo and fail before
     implementation begins locally (developer checklist). Tests added MUST be kept
     fast and deterministic; long-running E2E tests can be gated separately.
--   Code formatters and linters (configured in root package.json) MUST be applied
+- Code formatters and linters (configured in root package.json) MUST be applied
     before merging.
 
 ## Governance
@@ -100,17 +101,17 @@ MUST include:
 
 Versioning policy:
 
--   MAJOR: incompatible governance/principle removals or changes that break
+- MAJOR: incompatible governance/principle removals or changes that break
     contracts or developer expectations.
--   MINOR: addition of new principles, new mandatory sections, or material
+- MINOR: addition of new principles, new mandatory sections, or material
     expansions of guidance.
--   PATCH: editorial changes, clarifications, and typo fixes.
+- PATCH: editorial changes, clarifications, and typo fixes.
 
 Compliance reviews:
 
--   Major or minor amendments SHOULD be communicated in the project changelog and
+- Major or minor amendments SHOULD be communicated in the project changelog and
     announced to contributors.
--   Periodic review: at least once per year the maintainers SHOULD review
+- Periodic review: at least once per year the maintainers SHOULD review
     constitution compliance against top-level templates and CI gates.
 
 **Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE): confirm original adoption date | **Last Amended**: 2025-11-09
