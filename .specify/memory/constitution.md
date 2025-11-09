@@ -1,16 +1,28 @@
 <!--
 Sync Impact Report
 
-- Version change: 1.0.0 -> 1.0.1
-- Modified principles: none (no renames or removals)
-- Added sections: none
-- Removed sections: none
-- Templates requiring updates:
   - .specify/templates/plan-template.md ✅ updated
   - .specify/templates/tasks-template.md ✅ updated
   - .specify/templates/spec-template.md ⚠ checked (no change)
+  - RATIFICATION_DATE: TODO(RATIFICATION_DATE): 初回採択日を確認すること
+<!--
+Sync Impact Report
+
+- Version change: 1.0.1 -> 1.0.1 (validated; no substantive content change)
+- Modified principles: none
+- Added sections: none
+- Removed sections: none
+- Templates checked / impact:
+  - .specify/templates/plan-template.md ✅ checked (no required changes)
+  - .specify/templates/tasks-template.md ✅ checked (no required changes)
+  - .specify/templates/spec-template.md ✅ checked (no required changes)
+  - .specify/templates/checklist-template.md ✅ checked (no required changes)
 - Follow-up TODOs:
   - RATIFICATION_DATE: TODO(RATIFICATION_DATE): 初回採択日を確認すること
+
+Notes:
+- I inspected the templates referenced by the constitution and verified they align with the
+  principles (TDD, contract testing, modularity). No automated edits were required.
 -->
 
 # テラフォーミング・マーズ ゲームマネージャー 憲章
