@@ -1,37 +1,4 @@
 ---
-description: "Task list template for feature implementation"
----
-
-# Tasks: [FEATURE NAME]
-
-**Input**: Design documents from `/specs/[###-feature-name]/`
-**Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
-
-**Tests**: The examples below include test tasks. Tests are REQUIRED and follow the
-Test-Driven Development (TDD) rule defined in the constitution: tests for new
-functionality MUST be written first and observed to fail before implementation
-begins. All feature plans MUST include which tests (unit, integration/contract,
-E2E) will be added or updated.
-
-**Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
-
-## Format: `[ID] [P?] [Story] Description`
-
-- **[P]**: Can run in parallel (different files, no dependencies)
-- **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
-- Include exact file paths in descriptions
-
-## Path Conventions
-
-- **Single project**: `src/`, `tests/` at repository root
-- **Web app**: `backend/src/`, `frontend/src/`
-- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
-- Paths shown below assume single project - adjust based on plan.md structure
-
-  IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
-
-````markdown
----
 description: "機能実装のためのタスクリストテンプレート"
 ---
 
@@ -63,11 +30,7 @@ description: "機能実装のためのタスクリストテンプレート"
   実際のタスクに差し替えます：
   - spec.md のユーザーストーリー（優先度 P1,P2,P3...）
   - plan.md の要件
-  - data-model.md のエンティティ
-  - contracts/ のエンドポイント
-
   タスクはユーザーストーリーごとに整理され、各ストーリーが:
-  - 独立して実装可能
   - 独立してテスト可能
   - MVP として提供可能
 
@@ -76,12 +39,6 @@ description: "機能実装のためのタスクリストテンプレート"
 -->
 
 ## フェーズ 1: セットアップ（共通インフラ）
-
-**目的**: プロジェクト初期化と基本構造の作成
-
-- [ ] T001 実装計画に従ってプロジェクト構造を作成する
-- [ ] T002 [言語/フレームワーク] プロジェクトを初期化して依存関係を追加する
-- [ ] T003 [P] リンターとフォーマッタを設定する
 
 ---
 
@@ -98,21 +55,11 @@ description: "機能実装のためのタスクリストテンプレート"
 - [ ] T006 [P] API ルーティングとミドルウェア構成をセットアップする
 - [ ] T007 全ストーリーで使う基本モデル／エンティティを作成する
 - [ ] T008 エラーハンドリングとロギング基盤を設定する
-- [ ] T009 環境設定管理をセットアップする
-
 **チェックポイント**: 基盤が整い次第、ユーザーストーリー実装を並行して開始できます
 
 ---
 
-## フェーズ 3: ユーザーストーリー 1 - [タイトル] (優先度: P1) 🎯 MVP
-
-**ゴール**: [このストーリーで提供する機能の簡潔な説明]
-
-**独立検証**: [このストーリーが単独で動作することを検証する方法]
-
 ### ユーザーストーリー 1 のテスト（任意）
-
-> **注記: まずテストを作成し、失敗することを確認してください**
 
 - [ ] T010 [P] [US1] 契約テスト: `tests/contract/test_[name].py` にエンドポイントの契約テストを追加
 - [ ] T011 [P] [US1] 統合テスト: `tests/integration/test_[name].py` にユーザージャーニーの統合テストを追加
@@ -124,11 +71,6 @@ description: "機能実装のためのタスクリストテンプレート"
 - [ ] T014 [US1] `src/services/[service].py` に Service を実装（T012, T013 に依存）
 - [ ] T015 [US1] `src/[location]/[file].py` にエンドポイント／機能を実装
 - [ ] T016 [US1] バリデーションとエラーハンドリングを追加
-- [ ] T017 [US1] ログ出力を追加
-
-**チェックポイント**: この時点でユーザーストーリー 1 は独立して動作・検証できるはずです
-
----
 
 ## フェーズ 4: ユーザーストーリー 2 - [タイトル] (優先度: P2)
 
@@ -138,25 +80,17 @@ description: "機能実装のためのタスクリストテンプレート"
 
 ## フェーズ N: 仕上げ & 横断的対応
 
-**目的**: 複数ストーリーにまたがる改善
-
-- [ ] TXXX [P] ドキュメント更新（`docs/`）
 - [ ] TXXX コードのクリーンアップとリファクタ
 - [ ] TXXX 全体のパフォーマンス最適化
 - [ ] TXXX [P] 追加のユニットテスト（必要に応じて）
-- [ ] TXXX セキュリティ強化
-- [ ] TXXX `quickstart.md` の検証
-
+  
 ---
 
 ## 依存関係と実行順
 
-### フェーズ間の依存
-
 - **セットアップ（Phase 1）**: 依存なし。直ちに開始可能
 - **基盤（Phase 2）**: セットアップ完了後。全てのユーザーストーリーをブロック
 - **ユーザーストーリー（Phase 3+）**: 基盤完了後に開始可能。並行実装も可
-- **仕上げ（最終フェーズ）**: すべての対象ストーリー完了後
 
 ### ユーザーストーリー間の依存
 
@@ -179,12 +113,8 @@ description: "機能実装のためのタスクリストテンプレート"
 
 ## 実装戦略
 
-### MVP 優先
-
-1. セットアップを完了する
-2. 基盤を完了する（CRITICAL）
-3. ユーザーストーリー 1 を完了させる
-4. 検証してデプロイ／デモする（MVP）
+1. ユーザーストーリー 1 を完了させる
+2. 検証してデプロイ／デモする（MVP）
 
 ### 増分デリバリ
 
@@ -199,4 +129,3 @@ description: "機能実装のためのタスクリストテンプレート"
 - 各ストーリーは独立して実装・検証できること
 - テストは失敗から実装へ（TDD）
 - 各タスク・論理的なグループごとにコミットする
-
