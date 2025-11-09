@@ -25,7 +25,7 @@ Sync Impact Report
 	  - .specify/templates/tasks-template.md ✅ 更新済
 	  - .specify/templates/spec-template.md ⚠ チェック済（変更不要）
 	- フォローアップ TODO:
-	  - RATIFICATION_DATE: TODO(RATIFICATION_DATE): 初回採択日を確認すること
+	  - RATIFICATION_DATE: 2025/11/10(Mon)
 	-->
 
 # テラフォーミング・マーズ ゲームマネージャー 憲章

@@ -37,19 +37,19 @@ graph TB
 
 **サーバーサイド:**
 
--   Node.js (v18+)
--   Express.js (RESTful API)
--   Socket.io (WebSocket 通信)
--   PostgreSQL (データ永続化)
--   UUID (ゲーム ID 生成)
+- Node.js (v18+)
+- Express.js (RESTful API)
+- Socket.io (WebSocket 通信)
+- PostgreSQL (データ永続化)
+- UUID (ゲーム ID 生成)
 
 **クライアントサイド:**
 
--   Vue.js 3 (Composition API)
--   HTML5/CSS3
--   Socket.io Client
--   Axios (HTTP 通信)
--   Pinia (状態管理)
+- Vue.js 3 (Composition API)
+- HTML5/CSS3
+- Socket.io Client
+- Axios (HTTP 通信)
+- Pinia (状態管理)
 
 ## コンポーネントと インターフェース
 
@@ -210,32 +210,32 @@ PUT    /api/players/:id        - プレイヤー情報更新
 
 ### 単体テスト
 
--   GameManager クラスのメソッド
--   PlayerManager クラスのメソッド
--   データモデルのバリデーション
--   ユーティリティ関数
+- GameManager クラスのメソッド
+- PlayerManager クラスのメソッド
+- データモデルのバリデーション
+- ユーティリティ関数
 
 ### 統合テスト
 
--   WebSocket 通信フロー
--   REST API エンドポイント
--   データベース操作
--   ゲーム状態の同期
+- WebSocket 通信フロー
+- REST API エンドポイント
+- データベース操作
+- ゲーム状態の同期
 
 ### E2E テスト
 
--   完全なゲームセッションフロー
--   複数プレイヤーの同時操作
--   接続切断・再接続シナリオ
--   ゲーム状態の永続化・復元
+- 完全なゲームセッションフロー
+- 複数プレイヤーの同時操作
+- 接続切断・再接続シナリオ
+- ゲーム状態の永続化・復元
 
 ### テストツール
 
--   Jest (単体・統合テスト)
--   Supertest (API テスト)
--   Socket.io-client (WebSocket テスト)
--   Vitest (Vue.js コンポーネントテスト)
--   Cypress (E2E テスト)
+- Jest (単体・統合テスト)
+- Supertest (API テスト)
+- Socket.io-client (WebSocket テスト)
+- Vitest (Vue.js コンポーネントテスト)
+- Cypress (E2E テスト)
 
 ## セキュリティ考慮事項
 
