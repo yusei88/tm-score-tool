@@ -1,8 +1,8 @@
 # tasks.md
 
 機能: テラフォーミング・マーズ — ゲームセッション管理
-仕様: /Users/yusei/work/tm-score-tool/specs/001-tm-session-management/spec.md
-計画: /Users/yusei/work/tm-score-tool/specs/001-tm-session-management/plan.md
+仕様: specs/001-tm-session-management/spec.md
+計画: specs/001-tm-session-management/plan.md
 
 ## 概要
 
