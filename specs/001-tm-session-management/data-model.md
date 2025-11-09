@@ -45,7 +45,11 @@
 ## バリデーションルール（主要）
 
 - display_name: required, 1-32 文字、制御文字禁止
-- resources.\*: integer、>= 0（負値は拒否または警告）
+- resources.*: integer、>= 0（負値は明示的に拒否する）
+- サーバー側の扱い:
+    - HTTP リクエストで負値が含まれる場合、サーバーは 400 Bad Request を返し、どのフィールドが無効かを示すバリデーションエラーを返すこと（例: {"error": "validation", "details": {"resources.megaCredits": "must be >= 0"}}）。
+    - WebSocket ペイロードで負値が検出された場合、サーバーはエラーイベント（例: {"type": "validation_error", "message": "resource values must be non-negative", "details": {...}}）を返し、その更新を無視すること。
+    - サーバーは不正ペイロードをログに記録し、監査用メトリクス（例: invalid_payload_count）を増加させること。
 - state_version: 更新毎に +1。クライアントは base_version を送る（HTTP/WS payload に含める）。
 
 ## 状態遷移（概要）
