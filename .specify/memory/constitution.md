@@ -86,8 +86,9 @@ approved via the amendment process.
 - TDD rule: tests for new functionality MUST exist in the repo and fail before
     implementation begins locally (developer checklist). Tests added MUST be kept
     fast and deterministic; long-running E2E tests can be gated separately.
-- Code formatters and linters (configured in root package.json) MUST be applied
-    before merging.
+- Code formatters and linters (configured in root package.json) MUST be applied before merging.
+
+- Markdown ドキュメントのスタイル: Markdown のリストはハイフンを用い、ハイフンの後に必ず 1 つのスペースを入れること（例: `- アイテム`）。このルールはドキュメントの自動整形や linter ルールと整合するため必須とする。
 
 ## Governance
 
@@ -102,9 +103,9 @@ MUST include:
 Versioning policy:
 
 - MAJOR: incompatible governance/principle removals or changes that break
-    contracts or developer expectations.
+  contracts or developer expectations.
 - MINOR: addition of new principles, new mandatory sections, or material
-    expansions of guidance.
+  expansions of guidance.
 - PATCH: editorial changes, clarifications, and typo fixes.
 
 Compliance reviews:
