@@ -89,6 +89,8 @@ paths:
                     application/json:
                         schema:
                             type: object
+                            type: object
+                            required: [base_version, resources]
                             properties:
                                 base_version:
                                     type: integer
@@ -97,8 +99,22 @@ paths:
             responses:
                 "200":
                     description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Player"
+                "400":
+                    description: Bad Request - validation error
+                "401":
+                    description: Unauthorized
+                "403":
+                    description: Forbidden
+                "404":
+                    description: Not Found
                 "409":
                     description: Conflict - stale base_version
+                "500":
+                    description: Internal Server Error
 
 components:
     schemas:
