@@ -1,32 +1,17 @@
 <!--
 Sync Impact Report
 
-- Japanese Language Requirement
-- Version change: unknown -> 1.0.0
-- Modified/Added principles:
-	```markdown
-	<!--
-	影響同期レポート
-
-	- 日本語ドキュメント要件を追加
-	- バージョン変更: unknown -> 1.0.0
-	- 追加/変更された原則:
-	  - 追加: I. モジュール志向・ライブラリ優先のコンポーネント
-	  - 追加: II. API とリアルタイム契約の厳格化
-	  - 追加: III. テストファースト (TDD) — 非妥協
-	  - 追加: IV. 契約に対する統合テストと E2E テスト
-	  - 追加: V. 単純性、可観測性、セマンティックバージョニング
-	- 追加セクション:
-	  - 技術とアーキテクチャの制約
-	  - 開発ワークフローと品質ゲート
-	- 削除されたセクション: なし
-	- 更新が必要なテンプレート:
-	  - .specify/templates/plan-template.md ✅ 更新済
-	  - .specify/templates/tasks-template.md ✅ 更新済
-	  - .specify/templates/spec-template.md ⚠ チェック済（変更不要）
-	- フォローアップ TODO:
-	  - RATIFICATION_DATE: TODO(RATIFICATION_DATE): 初回採択日を確認すること
-	-->
+- Version change: 1.0.0 -> 1.0.1
+- Modified principles: none (no renames or removals)
+- Added sections: none
+- Removed sections: none
+- Templates requiring updates:
+  - .specify/templates/plan-template.md ✅ updated
+  - .specify/templates/tasks-template.md ✅ updated
+  - .specify/templates/spec-template.md ⚠ checked (no change)
+- Follow-up TODOs:
+  - RATIFICATION_DATE: TODO(RATIFICATION_DATE): 初回採択日を確認すること
+-->
 
 # テラフォーミング・マーズ ゲームマネージャー 憲章
 
@@ -92,4 +77,4 @@ REST と WebSocket のフローおよびデータベース相互作用を横断�
 - 主要または副次的な改訂はプロジェクトの変更ログで通知し、貢献者へ周知すること。
 - 定期レビュー: 少なくとも年に1回、メンテナは憲章の遵守状況をトップレベルテンプレートと CI ゲートに対してレビューすることを推奨する。
 
-**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE): 初回採択日を確認すること | **Last Amended**: 2025-11-09
+**Version**: 1.0.1 | **Ratified**: TODO(RATIFICATION_DATE): 初回採択日を確認すること | **Last Amended**: 2025-11-10

@@ -1046,20 +1046,20 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:>=10.0.0":
-  version: 24.10.0
-  resolution: "@types/node@npm:24.10.0"
-  dependencies:
-    undici-types: "npm:~7.16.0"
-  checksum: 10c0/f82ed7194e16f5590ef7afdc20c6d09068c76d50278b485ede8f0c5749683536e3064ffa8def8db76915196afb3724b854aa5723c64d6571b890b14492943b46
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^20.3.1":
   version: 20.19.24
   resolution: "@types/node@npm:20.19.24"
   dependencies:
     undici-types: "npm:~6.21.0"
   checksum: 10c0/c872ce80a1e832fe035a3c94a27acb2d6e45ffa1209c0241ac6e2d405db8d6f47eea7a2509b5c2dbedae6231dafb9dbed873dd5daaebbad1f11fdaa58726ce5e
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^24.10.0":
+  version: 24.10.0
+  resolution: "@types/node@npm:24.10.0"
+  dependencies:
+    undici-types: "npm:~7.16.0"
+  checksum: 10c0/f82ed7194e16f5590ef7afdc20c6d09068c76d50278b485ede8f0c5749683536e3064ffa8def8db76915196afb3724b854aa5723c64d6571b890b14492943b46
   languageName: node
   linkType: hard
 
@@ -4656,7 +4656,7 @@ __metadata:
     "@prisma/client": "npm:^5.12.0"
     "@types/express": "npm:^4.17.17"
     "@types/jest": "npm:^29.5.0"
-    "@types/node": "npm:^20.3.1"
+    "@types/node": "npm:^24.10.0"
     "@types/supertest": "npm:^2.0.12"
     express: "npm:^4.18.2"
     jest: "npm:^29.5.0"
@@ -4665,6 +4665,7 @@ __metadata:
     socket.io: "npm:^4.7.1"
     supertest: "npm:^6.3.3"
     ts-jest: "npm:^29.1.0"
+    ts-node: "npm:^10.9.1"
     ts-node-dev: "npm:^2.0.0"
     typescript: "npm:^5.5.0"
   languageName: unknown
@@ -4769,7 +4770,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-node@npm:^10.4.0":
+"ts-node@npm:^10.4.0, ts-node@npm:^10.9.1":
   version: 10.9.2
   resolution: "ts-node@npm:10.9.2"
   dependencies:
