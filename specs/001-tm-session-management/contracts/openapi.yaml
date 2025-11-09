@@ -89,7 +89,6 @@ paths:
                     application/json:
                         schema:
                             type: object
-                            type: object
                             required: [base_version, resources]
                             properties:
                                 base_version:
