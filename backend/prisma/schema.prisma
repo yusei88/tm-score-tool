@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model GameSession {
+  session_id       String   @id @default(uuid())
+  owner_id         String
+  status           String   @default("pending")
+  current_generation Int    @default(0)
+  state_version    Int      @default(1)
+  global_metrics   Json
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+
+  players          Player[]
+  turnStates       TurnState[]
+  events           PersistentEvent[]
+}
+
+model Player {
+  player_id    String   @id @default(uuid())
+  session_id   String
+  display_name String
+  resources    Json
+  TR           Int      @default(0)
+  milestones   Json
+  awards       Json
+  connected    Boolean  @default(false)
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+
+  session      GameSession @relation(fields: [session_id], references: [session_id], onDelete: Cascade)
+}
+
+model TurnState {
+  id                String   @id @default(uuid())
+  session_id        String
+  current_player_id String?
+  turn_order        Json
+  passed_flags      Json
+  created_at        DateTime @default(now())
+
+  session           GameSession @relation(fields: [session_id], references: [session_id], onDelete: Cascade)
+}
+
+model PersistentEvent {
+  id         String   @id @default(uuid())
+  session_id String
+  event_type String
+  payload    Json
+  created_at DateTime @default(now())
+
+  session    GameSession @relation(fields: [session_id], references: [session_id], onDelete: Cascade)
+}
