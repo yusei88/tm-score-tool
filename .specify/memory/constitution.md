@@ -57,7 +57,7 @@ REST と WebSocket のフローおよびデータベース相互作用を横断�
 この憲章はプロジェクト全体のコア技術選定に制約を与えます。合意済みのスタック（README.md と docs/ に記載）は以下です:
 
 - サーバー: Node.js (v18+), Express.js, Socket.io
-- 永続化: SQLite3（または一時用途の JSON スナップショット）
+- 永続化: PostgreSQL（または開発用途のローカル SQLite スナップショット）
 - クライアント: Vue.js 3 (Composition API), Vite, Pinia
 
 プロジェクトレイアウトは README.md に記載された構成に従うこと。サーバーとクライアントのコードは分離されていること（例: `src/server`, `src/client`）。このスタックからの逸脱や主要なツールのアップグレードは提案により正当化され、承認プロセスを経る必要があります。

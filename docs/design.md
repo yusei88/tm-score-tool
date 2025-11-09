@@ -21,7 +21,7 @@ graph TB
     end
 
     subgraph "データ層"
-        DB[(SQLite Database)]
+      DB[(PostgreSQL Database)]
         FS[ファイルシステム<br/>ゲーム状態JSON]
     end
 
@@ -40,7 +40,7 @@ graph TB
 -   Node.js (v18+)
 -   Express.js (RESTful API)
 -   Socket.io (WebSocket 通信)
--   SQLite3 (データ永続化)
+-   PostgreSQL (データ永続化)
 -   UUID (ゲーム ID 生成)
 
 **クライアントサイド:**

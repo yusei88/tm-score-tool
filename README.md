@@ -13,7 +13,7 @@
 - Node.js (v18+)
 - Express.js (RESTful API)
 - Socket.io (WebSocket 通信)
-- SQLite3 (データ永続化)
+- PostgreSQL (データ永続化)
 
 ### クライアントサイド
 
