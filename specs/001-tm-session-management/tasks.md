@@ -12,10 +12,10 @@
 
 ## フェーズ 1 — セットアップ
 
-- [ ] T001 `backend/` にバックエンドのプロジェクト雛形と `package.json` を初期化する
-- [ ] T002 `backend/src`, `backend/src/adapters`, `backend/src/services`, `backend/src/api`, `backend/src/lib`, `backend/tests/unit`, `backend/tests/integration`, `backend/tests/contract` のディレクトリを作成する
-- [ ] T003 `backend/package.json` に開発依存とスクリプトを追加する（express, socket.io, prisma, jest, supertest など）
-- [ ] T004 `.gitignore` を追加し、`backend/README.md` に最小の実行・テスト手順を記載する
+- [x] T001 `backend/` にバックエンドのプロジェクト雛形と `package.json` を初期化する
+- [x] T002 `backend/src`, `backend/src/adapters`, `backend/src/services`, `backend/src/api`, `backend/src/lib`, `backend/tests/unit`, `backend/tests/integration`, `backend/tests/contract` のディレクトリを作成する
+- [x] T003 `backend/package.json` に開発依存とスクリプトを追加する（express, socket.io, prisma, jest, supertest など）
+- [x] T004 `.gitignore` を追加し、`backend/README.md` に最小の実行・テスト手順を記載する
 
 ## フェーズ 2 — 基盤（ブロッキング前提条件）
 
