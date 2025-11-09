@@ -106,7 +106,7 @@ socket.emit("generation-changed", generation);
 
 ### 4. REST API エンドポイント
 
-```
+```code
 POST   /api/games              - 新しいゲーム作成
 GET    /api/games/:id          - ゲーム状態取得
 POST   /api/games/:id/join     - ゲーム参加
