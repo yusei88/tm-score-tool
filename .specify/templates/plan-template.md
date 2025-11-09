@@ -29,9 +29,25 @@
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+_GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
-[Gates determined based on constitution file]
+The following gates are derived from the project constitution and MUST be
+verified before research/design proceeds:
+
+-   TDD: Feature MUST document how tests will be written first (unit and
+    integration/contract tests). A small failing test example or test plan MUST be
+    present for new behavior.
+-   Contract coverage: Any feature that touches client/server contracts (REST
+    endpoints, WebSocket events) MUST include a plan for contract tests and
+    specify which integration tests will validate runtime behavior.
+-   Modularity: New core logic MUST be scoped as independently testable modules or
+    libraries; the plan MUST include module boundaries and public contracts.
+-   CI considerations: The plan MUST state any CI changes required to run the
+    tests (e.g., database setup, headless browser for E2E) and note expected run
+    time for gated checks.
+
+If any gate cannot be satisfied, mark the plan with the exception rationale and
+an explicit migration plan to reach compliance.
 
 ## Project Structure
 
@@ -48,6 +64,7 @@ specs/[###-feature]/
 ```
 
 ### Source Code (repository root)
+
 <!--
   ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
   for this feature. Delete unused options and expand the chosen structure with
@@ -98,7 +115,7 @@ directories captured above]
 
 > **Fill ONLY if Constitution Check has violations that must be justified**
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+| Violation                  | Why Needed         | Simpler Alternative Rejected Because |
+| -------------------------- | ------------------ | ------------------------------------ |
+| [e.g., 4th project]        | [current need]     | [why 3 projects insufficient]        |
+| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient]  |
