@@ -18,5 +18,6 @@ tmp/
 *.swp
 /.pnp
 /.pnp.js
+!backend/package-lock.json
 /.pnp
 /.pnp.js
