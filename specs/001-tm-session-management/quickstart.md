@@ -19,20 +19,20 @@ PORT=3000
 
 ```bash
 cd backend
-npm install
+yarn install
 ```
 
 ## 4. マイグレーションと起動
 
 ```bash
 npx prisma migrate dev --name init
-npm run dev
+yarn dev
 ```
 
 ## 5. テスト
 
 ```bash
-npm test
+yarn test
 ```
 
 <!-- note removed: backend/ scaffold is present in this repository -->
