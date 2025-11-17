@@ -5,7 +5,7 @@ info:
 servers:
     - url: https://api.example.local
 
-security: []  # No authentication required - anonymous participation only
+security: [] # No authentication required - anonymous participation only
 
 paths:
     /sessions:
