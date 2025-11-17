@@ -18,6 +18,14 @@ jobs:
               with:
                   node-version: "18"
                   cache: "yarn"
+                  # point cache lookup to backend lockfile since this repo keeps dependencies there
+                  cache-dependency-path: backend/yarn.lock
+
+            - name: Enable Corepack and prepare Yarn 4
+              run: |
+                  corepack enable
+                  # Use Yarn 4 (berry) to match developer environment; adjust version if needed
+                  corepack prepare yarn@4.11.0 --activate
 
             - name: Install backend dependencies
               run: |
