@@ -8,22 +8,25 @@ Sync Impact Report
 <!--
 Sync Impact Report
 
-- Version change: 1.0.1 -> 1.0.1 (validated; no substantive content change)
-- Modified principles: none
-- Added sections: none
-- Removed sections: none
-- Templates checked / impact:
-  - .specify/templates/plan-template.md ✅ checked (no required changes)
-  - .specify/templates/tasks-template.md ✅ checked (no required changes)
-  - .specify/templates/spec-template.md ✅ checked (no required changes)
-  - .specify/templates/checklist-template.md ✅ checked (no required changes)
-- Follow-up TODOs:
-  - RATIFICATION_DATE: TODO(RATIFICATION_DATE): 初回採択日を確認すること
-
-Notes:
-- I inspected the templates referenced by the constitution and verified they align with the
-  principles (TDD, contract testing, modularity). No automated edits were required.
--->
+	- 日本語ドキュメント要件を追加
+	- バージョン変更: unknown -> 1.0.0
+	- 追加/変更された原則:
+	  - 追加: I. モジュール志向・ライブラリ優先のコンポーネント
+	  - 追加: II. API とリアルタイム契約の厳格化
+	  - 追加: III. テストファースト (TDD) — 非妥協
+	  - 追加: IV. 契約に対する統合テストと E2E テスト
+	  - 追加: V. 単純性、可観測性、セマンティックバージョニング
+	- 追加セクション:
+	  - 技術とアーキテクチャの制約
+	  - 開発ワークフローと品質ゲート
+	- 削除されたセクション: なし
+	- 更新が必要なテンプレート:
+	  - .specify/templates/plan-template.md ✅ 更新済
+	  - .specify/templates/tasks-template.md ✅ 更新済
+	  - .specify/templates/spec-template.md ⚠ チェック済（変更不要）
+	- フォローアップ TODO:
+	  - RATIFICATION_DATE: 2025/11/10(Mon)
+	-->
 
 # テラフォーミング・マーズ ゲームマネージャー 憲章
 
@@ -54,7 +57,7 @@ REST と WebSocket のフローおよびデータベース相互作用を横断�
 この憲章はプロジェクト全体のコア技術選定に制約を与えます。合意済みのスタック（README.md と docs/ に記載）は以下です:
 
 - サーバー: Node.js (v18+), Express.js, Socket.io
-- 永続化: SQLite3（または一時用途の JSON スナップショット）
+- 永続化: PostgreSQL（または開発用途のローカル SQLite スナップショット）
 - クライアント: Vue.js 3 (Composition API), Vite, Pinia
 
 プロジェクトレイアウトは README.md に記載された構成に従うこと。サーバーとクライアントのコードは分離されていること（例: `src/server`, `src/client`）。このスタックからの逸脱や主要なツールのアップグレードは提案により正当化され、承認プロセスを経る必要があります。

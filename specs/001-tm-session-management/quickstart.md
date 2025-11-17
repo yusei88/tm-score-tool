@@ -53,4 +53,4 @@ yarn prisma:seed
 # もしくは直接 tsprisma を呼ぶ: yarn tsprisma
 ```
 
-注意: このリポジトリに backend が未実装の場合、上のコマンドはテンプレートとしての案内です。まずは `backend/` の雛形と package.json を用意してください。
+<!-- note removed: backend/ scaffold is present in this repository -->

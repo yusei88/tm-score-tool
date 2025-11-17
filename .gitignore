@@ -16,6 +16,6 @@ package-lock.json
 tmp/
 *.tmp
 *.swp
-coverage/
 /.pnp
 /.pnp.js
+!backend/package-lock.json

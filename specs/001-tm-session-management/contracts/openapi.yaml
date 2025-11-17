@@ -5,6 +5,8 @@ info:
 servers:
     - url: https://api.example.local
 
+security: [] # No authentication required - anonymous participation only
+
 paths:
     /sessions:
         post:
@@ -15,6 +17,7 @@ paths:
                     application/json:
                         schema:
                             type: object
+                            required: [owner_name]
                             properties:
                                 owner_name:
                                     type: string
@@ -89,6 +92,7 @@ paths:
                     application/json:
                         schema:
                             type: object
+                            required: [base_version, resources]
                             properties:
                                 base_version:
                                     type: integer
@@ -97,35 +101,66 @@ paths:
             responses:
                 "200":
                     description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Player"
+                "400":
+                    description: Bad Request - validation error
+                "404":
+                    description: Not Found
                 "409":
                     description: Conflict - stale base_version
+                "500":
+                    description: Internal Server Error
 
 components:
     schemas:
         GameSession:
             type: object
+            required: [session_id, owner_id, status, state_version]
             properties:
                 session_id:
                     type: string
+                    format: uuid
                 owner_id:
                     type: string
+                    format: uuid
                 status:
                     type: string
+                    enum: [pending, in_progress, finished]
                 current_generation:
                     type: integer
+                    minimum: 0
                 state_version:
                     type: integer
+                    minimum: 0
                 global_metrics:
                     type: object
+                    properties:
+                        oxygen:
+                            type: number
+                        temperature:
+                            type: number
+                        oceans:
+                            type: integer
+                            minimum: 0
         Player:
             type: object
+            required: [player_id, display_name]
             properties:
                 player_id:
                     type: string
+                    format: uuid
                 display_name:
                     type: string
+                    minLength: 1
+                    maxLength: 32
                 resources:
                     type: object
+                    additionalProperties:
+                        type: integer
+                        minimum: 0
 # WebSocket events (documented here for consumers):
 # - client -> server: join (sessionId, display_name)
 # - client -> server: update_resources (base_version, delta)

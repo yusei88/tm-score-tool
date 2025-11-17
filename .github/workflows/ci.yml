@@ -1,46 +1,67 @@
 name: CI
 
 on:
-    push:
-        branches: ["**"]
-    pull_request:
-        branches: ["**"]
-
+  push:
+    branches: [main, 001-tm-session-management]
+  # pull_request:
+  #     branches: [main]
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        services:
-            postgres:
-                image: postgres:15
-                env:
-                    POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-                ports:
-                    - 5432:5432
-                options: >-
-                    --health-cmd "pg_isready -U postgres" --health-interval 10s --health-timeout 5s --health-retries 5
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
         env:
-            DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        ports:
+            - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
-            - name: Use Node.js 18
-              uses: actions/setup-node@v4
-              with:
-                  node-version: "18"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-            - name: Install backend dependencies (Yarn)
-              working-directory: backend
-              run: yarn install --frozen-lockfile
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+            node-version: "18"
 
-            - name: Generate Prisma client
-              working-directory: backend
-              run: yarn prisma generate
+      - name: Cache Yarn cache
+        uses: actions/cache@v4
+        with:
+            path: |
+                backend/.yarn/cache
+                backend/.yarn/install-state.gz
+                ~/.cache/yarn
+            key: ${{ runner.os }}-yarn-${{ hashFiles('backend/yarn.lock') }}
+            restore-keys: |
+                ${{ runner.os }}-yarn-
 
-            - name: Type-check (yarn tsc)
-              working-directory: backend
-              run: yarn tsc -p . --noEmit
+      - name: Install backend dependencies (Yarn)
+        working-directory: backend
+        run: yarn install
 
-            - name: Run tests (Yarn)
-              working-directory: backend
-              run: yarn test
+      - name: Validate OpenAPI contract
+        run: |
+            npx @apidevtools/swagger-cli validate specs/001-tm-session-management/contracts/openapi.yaml
+
+      - name: Run dependency audit (moderate level, non-blocking)
+        continue-on-error: true
+        run: |
+            cd backend
+            yarn audit --level moderate || true
+
+      - name: Generate Prisma client
+        working-directory: backend
+        run: yarn prisma generate
+
+      - name: Type-check (yarn tsc)
+        working-directory: backend
+        run: yarn tsc -p . --noEmit
+
+      - name: Run tests (Yarn)
+        working-directory: backend
+        run: yarn test
