@@ -1,91 +1,62 @@
-# Implementation Plan: [FEATURE]
+# 実装計画: [機能名]
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+**ブランチ**: `[###-feature-name]` | **日付**: [DATE] | **仕様**: [link]
+**入力**: `/specs/[###-feature-name]/spec.md` からの機能仕様
 
-**Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
+**注記**: このテンプレートは `/speckit.plan` コマンドで埋められます。実行フローは `.specify/templates/commands/plan.md` を参照してください。
 
-## Summary
+## 概要
 
-[Extract from feature spec: primary requirement + technical approach from research]
+[機能仕様から抽出した主要要件と、調査に基づく技術的アプローチをここに記載してください]
 
-## Technical Context
+## 技術的コンテキスト
 
 <!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
+  必要なアクション: 以下セクションの内容をプロジェクトの技術的詳細で置き換えてください。
+  この構造は設計・反復プロセスを案内するための参考です。
 -->
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+**言語/バージョン**: [例: Node.js 18.x, Python 3.11 など、または NEEDS CLARIFICATION]
+**主要依存**: [例: Express, Socket.io, Prisma など、または NEEDS CLARIFICATION]
+**ストレージ**: [例: PostgreSQL, SQLite, JSON ファイル など または N/A]
+**テスト**: [例: Jest, pytest, Playwright など または NEEDS CLARIFICATION]
+**ターゲットプラットフォーム**: [例: Linux サーバ, ブラウザ, iOS など または NEEDS CLARIFICATION]
+**プロジェクト種別**: [単一/ウェブ/モバイル 等 — ソース構成に影響]
+**パフォーマンス目標**: [例: レイテンシ、スループット目標 または NEEDS CLARIFICATION]
+**制約**: [例: p95 <200ms、メモリ <100MB など または NEEDS CLARIFICATION]
+**スケール/範囲**: [例: 同時セッション数、想定ユーザー数など または NEEDS CLARIFICATION]
 
-## Constitution Check
+## 憲章チェック
 
-_GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
+_ゲート: Phase 0 の調査前に満たすこと。Phase 1 設計後に再確認すること。_
 
-The following gates are derived from the project constitution and MUST be
-verified before research/design proceeds:
+憲章に基づく以下のゲートは、調査／設計を進める前に検証する必要があります:
 
--   TDD: Feature MUST document how tests will be written first (unit and
-    integration/contract tests). A small failing test example or test plan MUST be
-    present for new behavior.
--   Contract coverage: Any feature that touches client/server contracts (REST
-    endpoints, WebSocket events) MUST include a plan for contract tests and
-    specify which integration tests will validate runtime behavior.
--   Modularity: New core logic MUST be scoped as independently testable modules or
-    libraries; the plan MUST include module boundaries and public contracts.
--   CI considerations: The plan MUST state any CI changes required to run the
-    tests (e.g., database setup, headless browser for E2E) and note expected run
-    time for gated checks.
+- TDD: 機能はまずテストをどのように書くかを文書化すること（ユニットおよび統合／契約テスト）。新機能に対しては小さな失敗するテスト例またはテスト計画が必要です。
+- 契約カバレッジ: クライアント／サーバー契約（REST エンドポイント、WebSocket イベント）に関わる機能は、契約テストの計画を含め、どの統合テストが実行時の振る舞いを検証するかを明示してください。
+- モジュラリティ: 新しいコアロジックは独立してテスト可能なモジュール／ライブラリとしてスコープを定義し、公開 API を明示すること。
+- CI の考慮点: テストを実行するために CI に必要な変更（例: DB セットアップ、ヘッドレスブラウザ）を明記し、ゲートで実行されるチェックの想定実行時間を記載すること。
 
-If any gate cannot be satisfied, mark the plan with the exception rationale and
-an explicit migration plan to reach compliance.
+満たせないゲートがある場合は、例外の理由と準拠するための移行計画を明記してください。
 
-## Project Structure
+## プロジェクト構成
 
-### Documentation (this feature)
+### ドキュメント（この機能）
 
 ```text
 specs/[###-feature]/
-├── plan.md              # This file (/speckit.plan command output)
-├── research.md          # Phase 0 output (/speckit.plan command)
-├── data-model.md        # Phase 1 output (/speckit.plan command)
-├── quickstart.md        # Phase 1 output (/speckit.plan command)
-├── contracts/           # Phase 1 output (/speckit.plan command)
-└── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
+├── plan.md              # このファイル（/speckit.plan の出力）
+├── research.md          # Phase 0 の出力
+├── data-model.md        # Phase 1 の出力
+├── quickstart.md        # Phase 1 の出力
+├── contracts/           # Phase 1 の出力
+└── tasks.md             # Phase 2 の出力（/speckit.tasks が作成）
 ```
 
-### Source Code (repository root)
-
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
+### ソースコード（リポジトリルート）
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
-
-tests/
-├── contract/
-├── integration/
-└── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
+# ここに実際のプロジェクト構造を記載してください（不要なオプションは削除）
 backend/
 ├── src/
 │   ├── models/
@@ -95,27 +66,15 @@ backend/
 
 frontend/
 ├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
 └── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
 ```
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+**構造決定**: 選択した構成と実際のディレクトリをここに記載してください。
 
-## Complexity Tracking
+## 複雑性トラッキング
 
-> **Fill ONLY if Constitution Check has violations that must be justified**
+> **注記: 憲章チェックで違反がある場合にのみ記入してください**
 
-| Violation                  | Why Needed         | Simpler Alternative Rejected Because |
-| -------------------------- | ------------------ | ------------------------------------ |
-| [e.g., 4th project]        | [current need]     | [why 3 projects insufficient]        |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient]  |
+| 違反項目 | なぜ必要か | より単純な代替案が却下された理由 |
+| -------- | ---------- | ---------------------------------- |
+| [例]     | [理由]     | [理由]                             |

@@ -1,0 +1,168 @@
+openapi: 3.0.3
+info:
+    title: TM Session Management API
+    version: 0.1.0
+servers:
+    - url: https://api.example.local
+
+security: [] # No authentication required - anonymous participation only
+
+paths:
+    /sessions:
+        post:
+            summary: Create a new game session
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            required: [owner_name]
+                            properties:
+                                owner_name:
+                                    type: string
+            responses:
+                "201":
+                    description: Created
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/GameSession"
+
+    /sessions/{sessionId}/join:
+        post:
+            summary: Join an existing session (anonymous)
+            parameters:
+                - in: path
+                  name: sessionId
+                  schema:
+                      type: string
+                  required: true
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                display_name:
+                                    type: string
+            responses:
+                "200":
+                    description: Joined
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Player"
+
+    /sessions/{sessionId}:
+        get:
+            summary: Get session state
+            parameters:
+                - in: path
+                  name: sessionId
+                  schema:
+                      type: string
+                  required: true
+            responses:
+                "200":
+                    description: Session state
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/GameSession"
+
+    /sessions/{sessionId}/players/{playerId}/resources:
+        post:
+            summary: Update player resources (with base_version for optimistic check)
+            parameters:
+                - in: path
+                  name: sessionId
+                  schema:
+                      type: string
+                  required: true
+                - in: path
+                  name: playerId
+                  schema:
+                      type: string
+                  required: true
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            required: [base_version, resources]
+                            properties:
+                                base_version:
+                                    type: integer
+                                resources:
+                                    type: object
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Player"
+                "400":
+                    description: Bad Request - validation error
+                "404":
+                    description: Not Found
+                "409":
+                    description: Conflict - stale base_version
+                "500":
+                    description: Internal Server Error
+
+components:
+    schemas:
+        GameSession:
+            type: object
+            required: [session_id, owner_id, status, state_version]
+            properties:
+                session_id:
+                    type: string
+                    format: uuid
+                owner_id:
+                    type: string
+                    format: uuid
+                status:
+                    type: string
+                    enum: [pending, in_progress, finished]
+                current_generation:
+                    type: integer
+                    minimum: 0
+                state_version:
+                    type: integer
+                    minimum: 0
+                global_metrics:
+                    type: object
+                    properties:
+                        oxygen:
+                            type: number
+                        temperature:
+                            type: number
+                        oceans:
+                            type: integer
+                            minimum: 0
+        Player:
+            type: object
+            required: [player_id, display_name]
+            properties:
+                player_id:
+                    type: string
+                    format: uuid
+                display_name:
+                    type: string
+                    minLength: 1
+                    maxLength: 32
+                resources:
+                    type: object
+                    additionalProperties:
+                        type: integer
+                        minimum: 0
+# WebSocket events (documented here for consumers):
+# - client -> server: join (sessionId, display_name)
+# - client -> server: update_resources (base_version, delta)
+# - server -> client: state_update (full session state + state_version)
+# - server -> client: error (code, message)

@@ -1,116 +1,95 @@
 <!--
 Sync Impact Report
 
+- Japanese Language Requirement
 - Version change: unknown -> 1.0.0
 - Modified/Added principles:
-	- Added: I. Modular, library-first components
-	- Added: II. API & Real-time Contract Discipline
-	- Added: III. Test-First (TDD) — NON-NEGOTIABLE
-	- Added: IV. Integration and E2E Testing for contracts
-	- Added: V. Simplicity, Observability & Semantic Versioning
-- Added sections:
-	- Technology & Architecture Constraints
-	- Development Workflow & Quality Gates
-- Removed sections: none
-- Templates requiring updates:
-	- .specify/templates/plan-template.md ✅ updated
-	- .specify/templates/tasks-template.md ✅ updated
-	- .specify/templates/spec-template.md ⚠ checked (no changes needed)
-- Follow-up TODOs:
-	- RATIFICATION_DATE: TODO(RATIFICATION_DATE): confirm original adoption date
--->
+	```markdown
+	<!--
+	影響同期レポート
 
-# Terraforming Mars Game Manager Constitution
+	- 日本語ドキュメント要件を追加
+	- バージョン変更: unknown -> 1.0.0
+	- 追加/変更された原則:
+	  - 追加: I. モジュール志向・ライブラリ優先のコンポーネント
+	  - 追加: II. API とリアルタイム契約の厳格化
+	  - 追加: III. テストファースト (TDD) — 非妥協
+	  - 追加: IV. 契約に対する統合テストと E2E テスト
+	  - 追加: V. 単純性、可観測性、セマンティックバージョニング
+	- 追加セクション:
+	  - 技術とアーキテクチャの制約
+	  - 開発ワークフローと品質ゲート
+	- 削除されたセクション: なし
+	- 更新が必要なテンプレート:
+	  - .specify/templates/plan-template.md ✅ 更新済
+	  - .specify/templates/tasks-template.md ✅ 更新済
+	  - .specify/templates/spec-template.md ⚠ チェック済（変更不要）
+	- フォローアップ TODO:
+	  - RATIFICATION_DATE: 2025/11/10(Mon)
+	-->
 
-## Core Principles
+# テラフォーミング・マーズ ゲームマネージャー 憲章
 
-### I. Modular, library-first components
+## 中核原則
 
-All core domain logic MUST be implemented as small, well-documented, independently
-testable modules (libraries) that expose clear contracts. Modules MUST not rely on
-monolithic application startup to be testable. Rationale: modular code improves
-testability, reuse, and reduces coupling between server/client responsibilities.
+### I. モジュール志向・ライブラリ優先のコンポーネント
 
-### II. API & Real-time Contract Discipline
+全てのコアドメインロジックは、小さく文書化された独立してテスト可能なモジュール（ライブラリ）として実装されなければなりません。モジュールはモノリシックなアプリ起動に依存してはならず、単体でテスト可能であることが求められます。理由: モジュール化はテスト容易性と再利用性を高め、サーバー／クライアント間の結合を低減します。
 
-REST APIs and WebSocket (Socket.io) events are the authoritative contracts between
-client and server. Contracts MUST be documented, versioned, and have contract
-tests (contract tests) that run in CI. Breaking changes to contracts MUST follow
-the versioning policy and include migration guidance.
+### II. API とリアルタイム契約の厳格化
 
-### III. Test-First (TDD) — NON-NEGOTIABLE
+REST API と WebSocket（Socket.io）イベントはクライアントとサーバー間の公式な契約です。契約は文書化・バージョン管理され、CI で実行される契約テストを備える必要があります。契約に対する破壊的変更はバージョンポリシーに従い、移行ガイダンスを含める必要があります。
 
-Test-Driven Development is mandatory: for all new behavior, a test (unit/integration)
-MUST be written first and observed to fail; implementation follows until the test
-passes, then refactor. Tests are part of the specification and serve as the
-primary guardrail for correctness and future change.
+### III. テストファースト (TDD) — 非妥協
 
-### IV. Integration & E2E testing for contracts
+テスト駆動開発は必須です: すべての新しい振る舞いについて、まずテスト（ユニット／統合）を作成し失敗することを確認し、その後実装してテストをパスさせ、リファクタリングします。テストは仕様の一部であり、将来の変更に対する主要なガードレールです。
 
-Integration tests that exercise the REST + WebSocket flows and database
-interactions MUST be included for changes that affect runtime contracts. E2E
-tests (Playwright/Cypress) are required for critical user journeys (game
-session lifecycle, multi-player synchronization). Rationale: real-time sync and
-state persistence require cross-layer validation.
+### IV. 契約に対する統合 & E2E テスト
 
-### V. Simplicity, Observability & Semantic Versioning
+REST と WebSocket のフローおよびデータベース相互作用を横断する統合テストは、ランタイム契約に影響を与える変更に対して必須です。重要なユーザージャーニー（セッションライフサイクル、マルチプレイヤー同期など）については E2E テスト（Playwright/Cypress）を必須とします。理由: リアルタイム同期と状態永続化はクロスレイヤの検証が必要です。
 
-Prefer simple, auditable implementations over complex optimizations (YAGNI).
-Instrumentation (structured logs, error context) and meaningful metrics SHOULD be
-added for server-side components. Release artifacts MUST follow semantic
-versioning: MAJOR for incompatible contract changes, MINOR for additive
-functionality, PATCH for bugfixes and clarifications.
+### V. 単純性、可観測性、セマンティックバージョニング
 
-## Technology & Architecture Constraints
+複雑な最適化よりも単純で監査可能な実装を優先します（YAGNI）。サーバー側コンポーネントには計測（構造化ログ、エラーコンテキスト）と意味のあるメトリクスを追加することを推奨します。リリースはセマンティックバージョニングに従うこと: MAJOR は互換性のない契約変更、MINOR は機能追加、PATCH はバグ修正。
 
-This constitution constrains core technology choices for consistency across the
-project. The agreed stack (documented in README.md and docs/) is:
+## 技術およびアーキテクチャの制約
 
--   Server: Node.js (v18+), Express.js, Socket.io
--   Persistence: SQLite3 (or JSON snapshotting for ephemeral use)
--   Client: Vue.js 3 (Composition API), Vite, Pinia
+この憲章はプロジェクト全体のコア技術選定に制約を与えます。合意済みのスタック（README.md と docs/ に記載）は以下です:
 
-Project layout MUST follow the repository structure documented in README.md;
-server and client code are separated (see src/server, src/client). Any deviation
-from this stack or major tooling upgrades MUST be justified in a proposal and
-approved via the amendment process.
+- サーバー: Node.js (v18+), Express.js, Socket.io
+- 永続化: PostgreSQL（または開発用途のローカル SQLite スナップショット）
+- クライアント: Vue.js 3 (Composition API), Vite, Pinia
 
-## Development Workflow & Quality Gates
+プロジェクトレイアウトは README.md に記載された構成に従うこと。サーバーとクライアントのコードは分離されていること（例: `src/server`, `src/client`）。このスタックからの逸脱や主要なツールのアップグレードは提案により正当化され、承認プロセスを経る必要があります。
 
--   All code changes MUST be delivered via Pull Request with at least one approving
-    reviewer.
--   CI MUST run unit, integration/contract, and lint checks. PRs that add or
-    change runtime contracts MUST include or update contract tests and integration
-    tests.
--   TDD rule: tests for new functionality MUST exist in the repo and fail before
-    implementation begins locally (developer checklist). Tests added MUST be kept
-    fast and deterministic; long-running E2E tests can be gated separately.
--   Code formatters and linters (configured in root package.json) MUST be applied
-    before merging.
+## 開発ワークフローと品質ゲート
 
-## Governance
+- すべてのコード変更はプルリクエストで配信し、少なくとも1名の承認レビュアーを得ること。
+- CI はユニット、統合/契約、リントチェックを実行すること。ランタイム契約に影響する PR は契約テストと統合テストを含めること。
+- TDD 規約: 新機能のテストはリポジトリに存在し、実装前に失敗することを確認する（開発者チェックリスト）。追加するテストは高速かつ決定論的であること。長時間かかる E2E テストは別ゲートで運用すること。
+- コードフォーマッタとリンタ（ルートの package.json で設定）はマージ前に適用すること。
 
-Amendments to this constitution are managed by pull request. An amendment PR
-MUST include:
+- Markdown ドキュメントのスタイル: Markdown のリストはハイフンを用い、ハイフンの後に必ず 1 つのスペースを入れること（例: `- アイテム`）。このルールはドキュメントの自動整形や linter ルールと整合するため必須とする。
 
-1. The proposed textual change to this constitution.
-2. A migration plan for any repository or runtime changes (tests, templates,
-   release notes) required by the amendment.
-3. CI green and at least one approval from a project maintainer.
+- ドキュメントの言語: 仕様書、計画、タスクなどのスペック関連ドキュメントは原則として日本語で作成すること。国際化や外部公開の必要がある場合は日本語版を主とし、英語版を副次的に添付すること。
 
-Versioning policy:
+## ガバナンス
 
--   MAJOR: incompatible governance/principle removals or changes that break
-    contracts or developer expectations.
--   MINOR: addition of new principles, new mandatory sections, or material
-    expansions of guidance.
--   PATCH: editorial changes, clarifications, and typo fixes.
+この憲章への改訂はプルリクエストで管理されます。改訂 PR には以下を含めること:
 
-Compliance reviews:
+1. 憲章への提案テキスト変更
+2. リポジトリやランタイムに必要な変更（テスト、テンプレート、リリースノート等）についてのマイグレーション計画
+3. CI のグリーン状態と少なくとも1名のプロジェクトメンテナ承認
 
--   Major or minor amendments SHOULD be communicated in the project changelog and
-    announced to contributors.
--   Periodic review: at least once per year the maintainers SHOULD review
-    constitution compliance against top-level templates and CI gates.
+バージョニングポリシー:
 
-**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE): confirm original adoption date | **Last Amended**: 2025-11-09
+- MAJOR: 統治/原則の削除や契約を破壊する変更など、互換性を壊す変更
+- MINOR: 新しい原則の追加、必須セクションの追加、ガイダンスの大幅な拡張
+- PATCH: 編集的変更、明確化、誤字修正
+
+コンプライアンスレビュー:
+
+- 主要または副次的な改訂はプロジェクトの変更ログで通知し、貢献者へ周知すること。
+- 定期レビュー: 少なくとも年に1回、メンテナは憲章の遵守状況をトップレベルテンプレートと CI ゲートに対してレビューすることを推奨する。
+
+**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE): 初回採択日を確認すること | **Last Amended**: 2025-11-09
