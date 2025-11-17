@@ -9,6 +9,7 @@ on:
 jobs:
     test-and-validate:
         runs-on: ubuntu-latest
+        timeout-minutes: 30
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -17,20 +18,27 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: "18"
-                  cache: "yarn"
-                  # point cache lookup to backend lockfile since this repo keeps dependencies there
-                  cache-dependency-path: backend/yarn.lock
 
             - name: Enable Corepack and prepare Yarn 4
               run: |
                   corepack enable
-                  # Use Yarn 4 (berry) to match developer environment; adjust version if needed
                   corepack prepare yarn@4.11.0 --activate
+
+            - name: Cache Yarn cache
+              uses: actions/cache@v4
+              with:
+                  path: |
+                      backend/.yarn/cache
+                      backend/.yarn/install-state.gz
+                      ~/.cache/yarn
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('backend/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-yarn-
 
             - name: Install backend dependencies
               run: |
                   cd backend
-                  # Use immutable install for Yarn 4; will fail if lockfile and cache are out of sync
+                  # immutable install will fail if lockfile and package.json diverge
                   yarn install --immutable --immutable-cache
 
             - name: Run backend tests
