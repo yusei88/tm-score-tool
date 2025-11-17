@@ -6,8 +6,10 @@ let io: IOServer | null = null;
 export function attachSocket(server: HttpServer): IOServer {
     if (io) return io;
 
-    const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',').map((s) => s.trim()).filter(Boolean);
-    const isDev = process.env.NODE_ENV === 'development';
+    const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
+    const isDev = process.env.NODE_ENV === "development";
 
     io = new IOServer(server, {
         cors: {
@@ -18,7 +20,7 @@ export function attachSocket(server: HttpServer): IOServer {
                 if (!origin) return callback(null, true);
                 if (isDev) return callback(null, true);
                 if (allowedOrigins && allowedOrigins.includes(origin)) return callback(null, true);
-                return callback(new Error('Origin not allowed'));
+                return callback(new Error("Origin not allowed"));
             },
             credentials: true,
         },
