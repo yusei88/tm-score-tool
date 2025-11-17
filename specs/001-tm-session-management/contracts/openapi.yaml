@@ -21,6 +21,10 @@ paths:
                             properties:
                                 owner_name:
                                     type: string
+                                    minLength: 1
+                                    maxLength: 32
+                                    pattern: '^[^\\x00-\\x1F\\x7F]+$'
+                                    description: Owner display name (1-32 chars, no control characters)
             responses:
                 "201":
                     description: Created
@@ -44,9 +48,13 @@ paths:
                     application/json:
                         schema:
                             type: object
+                            required: [display_name]
                             properties:
                                 display_name:
                                     type: string
+                                    minLength: 1
+                                    maxLength: 32
+                                    pattern: '^[^\\x00-\\x1F\\x7F]+$'
             responses:
                 "200":
                     description: Joined
@@ -98,6 +106,25 @@ paths:
                                     type: integer
                                 resources:
                                     type: object
+                                    properties:
+                                        mc:
+                                            type: integer
+                                            minimum: 0
+                                        steel:
+                                            type: integer
+                                            minimum: 0
+                                        titanium:
+                                            type: integer
+                                            minimum: 0
+                                        plants:
+                                            type: integer
+                                            minimum: 0
+                                        energy:
+                                            type: integer
+                                            minimum: 0
+                                        heat:
+                                            type: integer
+                                            minimum: 0
             responses:
                 "200":
                     description: OK
@@ -111,6 +138,15 @@ paths:
                     description: Not Found
                 "409":
                     description: Conflict - stale base_version
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                    current_version:
+                                        type: integer
                 "500":
                     description: Internal Server Error
 
