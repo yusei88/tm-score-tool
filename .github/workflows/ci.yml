@@ -22,7 +22,8 @@ jobs:
             - name: Install backend dependencies
               run: |
                   cd backend
-                  yarn install --frozen-lockfile
+                  # Use immutable install for Yarn 4; will fail if lockfile and cache are out of sync
+                  yarn install --immutable --immutable-cache
 
             - name: Run backend tests
               run: |
