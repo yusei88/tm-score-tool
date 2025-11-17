@@ -1,12 +1,12 @@
 <!--
 Sync Impact Report
 
-- Japanese Language Requirement
-- Version change: unknown -> 1.0.0
-- Modified/Added principles:
-	```markdown
-	<!--
-	影響同期レポート
+  - .specify/templates/plan-template.md ✅ updated
+  - .specify/templates/tasks-template.md ✅ updated
+  - .specify/templates/spec-template.md ⚠ checked (no change)
+  - RATIFICATION_DATE: TODO(RATIFICATION_DATE): 初回採択日を確認すること
+<!--
+Sync Impact Report
 
 	- 日本語ドキュメント要件を追加
 	- バージョン変更: unknown -> 1.0.0
@@ -92,4 +92,4 @@ REST と WebSocket のフローおよびデータベース相互作用を横断�
 - 主要または副次的な改訂はプロジェクトの変更ログで通知し、貢献者へ周知すること。
 - 定期レビュー: 少なくとも年に1回、メンテナは憲章の遵守状況をトップレベルテンプレートと CI ゲートに対してレビューすることを推奨する。
 
-**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE): 初回採択日を確認すること | **Last Amended**: 2025-11-09
+**Version**: 1.0.1 | **Ratified**: TODO(RATIFICATION_DATE): 初回採択日を確認すること | **Last Amended**: 2025-11-10

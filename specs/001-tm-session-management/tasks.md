@@ -19,12 +19,12 @@
 
 ## フェーズ 2 — 基盤（ブロッキング前提条件）
 
-- [ ] T005 [P] `backend/prisma/schema.prisma` を作成し、GameSession/Player/TurnState のスキーマを定義する（`data-model.md` と整合）
-- [ ] T006 [P] DB クライアントアダプタ `backend/src/adapters/dbClient.ts` を実装する（Prisma クライアント初期化、トランザクション関数をエクスポート）
-- [ ] T007 [P] Express サーバーのエントリ `backend/src/index.ts` を作成し、`/healthz` エンドポイントを実装する
-- [ ] T008 [P] Socket.io アダプタ `backend/src/adapters/socket.ts` を作成し、サーバにアタッチする関数をエクスポートする
-- [ ] T009 [P] GitHub Actions の初期 CI ワークフロー `.github/workflows/ci.yml` を追加し、Postgres サービスでユニット＋統合テストを実行する
-- [ ] T010 Prisma マイグレーションとシード用ヘルパー `backend/prisma/seed.ts` を作成する（サンプルセッション/プレイヤーを作成）
+- [x] T005 [P] `backend/prisma/schema.prisma` を作成し、GameSession/Player/TurnState のスキーマを定義する（`data-model.md` と整合）
+- [x] T006 [P] DB クライアントアダプタ `backend/src/adapters/dbClient.ts` を実装する（Prisma クライアント初期化、トランザクション関数をエクスポート）
+- [x] T007 [P] Express サーバーのエントリ `backend/src/index.ts` を作成し、`/healthz` エンドポイントを実装する
+- [x] T008 [P] Socket.io アダプタ `backend/src/adapters/socket.ts` を作成し、サーバにアタッチする関数をエクスポートする
+- [x] T009 [P] GitHub Actions の初期 CI ワークフロー `.github/workflows/ci.yml` を追加し、Postgres サービスでユニット＋統合テストを実行する
+- [x] T010 Prisma マイグレーションとシード用ヘルパー `backend/prisma/seed.ts` を作成する（サンプルセッション/プレイヤーを作成）
 
 ---
 

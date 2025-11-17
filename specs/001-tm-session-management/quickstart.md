@@ -15,6 +15,14 @@ DATABASE_URL=postgresql://postgres:pass@localhost:5432/postgres
 PORT=3000
 ```
 
+ローカルでは `.env` ファイルを使って環境変数を管理してください。例:
+
+```env
+POSTGRES_PASSWORD=pass
+DATABASE_URL=postgresql://postgres:pass@localhost:5432/postgres
+PORT=3000
+```
+
 ## 3. 依存関係をインストール（backend ディレクトリ想定）
 
 ```bash
@@ -25,7 +33,7 @@ yarn install
 ## 4. マイグレーションと起動
 
 ```bash
-npx prisma migrate dev --name init
+yarn prisma migrate dev --name init
 yarn dev
 ```
 
@@ -33,6 +41,16 @@ yarn dev
 
 ```bash
 yarn test
+```
+
+## シード（サンプルデータ挿入）
+
+ローカルでシードを実行するには `.env` に `DATABASE_URL` を設定した上で次を実行します:
+
+```bash
+cd backend
+yarn prisma:seed
+# もしくは直接 tsprisma を呼ぶ: yarn tsprisma
 ```
 
 <!-- note removed: backend/ scaffold is present in this repository -->

@@ -13,6 +13,7 @@
 
 **Language/Version**: Node.js 18.x (LTS)  
 **Primary Dependencies**: Express.js, Socket.io, Prisma (ORM), pg (Postgres client), Jest, Supertest, Playwright  
+**Package manager**: Yarn (latest, preferred)  
 **Storage**: PostgreSQL (primary persistent store) with JSONB columns for flexible per-session state where appropriate  
 **Testing**: Jest (unit), Supertest (HTTP integration), custom Socket.io test harness (integration/contract), Playwright (E2E critical flows)  
 **Target Platform**: Dockerized Linux server (cloud deployment target), developers use macOS for local dev  
@@ -32,6 +33,11 @@ verified before research/design proceeds:
 - Contract coverage: REST エンドポイントと WebSocket イベントは OpenAPI とイベント定義で記述し、統合テスト（Supertest + Socket.io テスト）で契約を検証します。E2E（Playwright）は重要ユーザージャーニー（セッション作成〜開始〜再接続など）をカバーします。
 - Modularity: コアドメイン（セッション管理、スコア計算、ターン管理、永続化）は小さなライブラリ/サービス層として分離します（例: `src/services/sessionService`, `src/lib/scoreCalculator`）。公共インターフェースを明示し、単体テストを充実させます。
 - CI considerations: CI (GitHub Actions) は PostgreSQL サービスを用意し、ユニット + 統合（契約）テストを実行します。E2E はオプショングループに分け、短い契約テストはプルリクの必須ゲートとします。期待実行時間: ユニット+統合 ~ < 2 分（初期目標）、E2E 別ゲートで ~5-10 分。
+
+  - Secrets: CI 用のデータベース接続情報は GitHub Secrets で管理します。ローカル開発では `.env` を使って `DATABASE_URL` / `POSTGRES_PASSWORD` 等を管理してください。
+
+- Quality gate: 各タスクの実行後、リポジトリ内に「ビルド／型エラー」や「テスト失敗」を引き起こしているファイルがないかを自動または手動で確認すること。
+- Error handling: もしエラーが発生しているファイルがある場合は、そのエラーを解消してから当該タスクを完了済み（[X]）にマークすること。タスク完了の判断は、ビルド（tsc）、ユニットテスト（Jest）、および重要な静的チェックがすべてグリーンであることをもって行う。
 
 Constitution divergence / exceptions:
 
