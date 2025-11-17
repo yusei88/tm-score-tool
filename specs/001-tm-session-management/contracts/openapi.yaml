@@ -17,6 +17,7 @@ paths:
                     application/json:
                         schema:
                             type: object
+                            required: [owner_name]
                             properties:
                                 owner_name:
                                     type: string
